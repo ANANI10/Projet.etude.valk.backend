@@ -112,6 +112,14 @@ public class Employe {
         this.fonction = fonction;
     }
 
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
     @ManyToOne
     @JoinColumn(name = "livraison_id")
     private Livraison livraison;

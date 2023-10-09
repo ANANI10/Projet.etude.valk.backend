@@ -3,8 +3,10 @@ package com.GestionDesBiscuits.Valk.service;
 import com.GestionDesBiscuits.Valk.models.Vente;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public interface VenteService {
@@ -23,10 +25,16 @@ public interface VenteService {
 
     double calculerSommeRevenuTotal();
 
-    double calculerRevenuTotalParJour(Date date);
+    int calculateDailyRevenueByDate(Date date);
+    int calculateMonthlyRevenueByMonth(int month, int year);
+    int calculateYearlyRevenueByYear(int year);
+    int calculateDailyRevenue(Date date);
 
-    double calculerRevenuTotalParMois(int mois, int annee);
 
-    double calculerRevenuTotalParAnnee(int annee);
+
+
+
+
+    Long nombreTotalVentes();
 
 }

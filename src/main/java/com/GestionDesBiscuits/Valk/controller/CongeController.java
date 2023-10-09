@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@CrossOrigin(origins = "http://localhost:4200")
+
 @RestController
 @RequestMapping(name = "valk")
 
@@ -14,7 +16,7 @@ public class CongeController {
     @Autowired
     private CongeService congeService;
 
-    @PostMapping(path = "/ajouter")
+    @PostMapping(path = "/ajouterConge")
     public Conge ajouterConger(@RequestBody Conge conge){
         return congeService.addConge(conge);
     }

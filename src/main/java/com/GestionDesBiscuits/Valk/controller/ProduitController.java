@@ -6,7 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
+@CrossOrigin(origins = "http://localhost:4200")
 @RestController
 @RequestMapping(name = "valk")
 public class ProduitController {
@@ -18,7 +20,7 @@ public class ProduitController {
         return produitService.addProduit(produit);
     }
 
-    @GetMapping(path = "/listAProduit")
+    @GetMapping(path = "/listProduit")
 
     public List<Produit>afficherProduit(){
         return produitService.listProduit();
@@ -34,6 +36,10 @@ public class ProduitController {
         return produitService.deleteProduit(id);
     }
 
+    @GetMapping(path = "/findby/{id}")
+    public Optional<Produit> findProduit(@PathVariable Long id){
+        return produitService.findById(id);
+    }
 
 
 }

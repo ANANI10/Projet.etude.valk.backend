@@ -2,9 +2,6 @@ package com.GestionDesBiscuits.Valk.models;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
-import org.springframework.format.annotation.DateTimeFormat;
-
-import java.util.Date;
 import java.util.List;
 
 

@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ProduitServiceImplement implements ProduitService{
@@ -38,6 +39,11 @@ public class ProduitServiceImplement implements ProduitService{
     @Override
     public String deleteProduit(Long id) {
         produitRepo.deleteById(id);
-        return "Le produit est supprimé avec succes";
+        return "le produit est supprimé avec succes";
+    }
+
+    @Override
+    public Optional<Produit> findById(Long id) {
+        return produitRepo.findById(id) ;
     }
 }

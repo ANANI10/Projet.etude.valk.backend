@@ -15,4 +15,6 @@ public interface EmployeService {
     public Employe updateEmploye(Long id , Employe employe);
 
     public String deleteEmploye(Long id);
+
+    public Long nombreTotalEmployes();
 }

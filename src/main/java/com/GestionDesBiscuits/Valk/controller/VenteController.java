@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Date;
 import java.util.List;
 
+@CrossOrigin(origins = "http://localhost:4200")
 @RestController
 @RequestMapping(name = "valk")
 public class VenteController {
@@ -56,22 +57,30 @@ public class VenteController {
         return ResponseEntity.ok(sommeRevenuTotal);
     }
 
-
-    @GetMapping("/calculerRevenuTotalParJour")
-    public ResponseEntity<Double> calculerRevenuTotalParJour(@RequestParam("date") @DateTimeFormat(pattern = "yyyy-MM-dd") Date date) {
-        double revenuTotalParJour = venteService.calculerRevenuTotalParJour(date);
-        return ResponseEntity.ok(revenuTotalParJour);
+    @GetMapping(path = "/nombreTotalVente")
+    public ResponseEntity<Long> calculerNombreTotalVente() {
+        long nombreTotalVentes = venteService.nombreTotalVentes();
+        return ResponseEntity.ok(nombreTotalVentes);
     }
 
-    @GetMapping("/calculerRevenuTotalParMois")
-    public ResponseEntity<Double> calculerRevenuTotalParMois(@RequestParam("mois") int mois, @RequestParam("annee") int annee) {
-        double revenuTotalParMois = venteService.calculerRevenuTotalParMois(mois, annee);
-        return ResponseEntity.ok(revenuTotalParMois);
+    @GetMapping("/daily-revenue-by-date")
+    public ResponseEntity<Integer> getDailyRevenueByDate(
+            @RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd") Date date) {
+        int dailyRevenue = venteService.calculateDailyRevenueByDate(date);
+        return ResponseEntity.ok(dailyRevenue);
     }
 
-    @GetMapping("/calculerRevenuTotalParAnnee")
-    public ResponseEntity<Double> calculerRevenuTotalParAnnee(@RequestParam("annee") int annee) {
-        double revenuTotalParAnnee = venteService.calculerRevenuTotalParAnnee(annee);
-        return ResponseEntity.ok(revenuTotalParAnnee);
+    @GetMapping("/monthly-revenue-by-month-year")
+    public ResponseEntity<Integer> getMonthlyRevenueByMonthYear(
+            @RequestParam int month, @RequestParam int year) {
+        int monthlyRevenue = venteService.calculateMonthlyRevenueByMonth(month, year);
+        return ResponseEntity.ok(monthlyRevenue);
     }
+
+    @GetMapping("/yearly-revenue-by-year")
+    public ResponseEntity<Integer> getYearlyRevenueByYear(@RequestParam int year) {
+        int yearlyRevenue = venteService.calculateYearlyRevenueByYear(year);
+        return ResponseEntity.ok(yearlyRevenue);
+    }
+
 }

@@ -45,4 +45,9 @@ public class EmployeServiceImplément implements EmployeService{
         employeRepo.deleteById(id);
         return "Employé supprime avec succes";
     }
+
+    @Override
+    public Long nombreTotalEmployes() {
+        return employeRepo.count();
+    }
 }
