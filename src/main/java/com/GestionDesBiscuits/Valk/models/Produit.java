@@ -2,7 +2,9 @@ package com.GestionDesBiscuits.Valk.models;
 
 import jakarta.persistence.*;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "produit")
@@ -55,5 +57,6 @@ public class Produit {
 
     public Produit() {
     }
-
+    @ManyToMany(mappedBy = "produits")
+    private Set<Vente> ventes = new HashSet<>();
 }

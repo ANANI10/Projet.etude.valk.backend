@@ -3,6 +3,7 @@ import com.GestionDesBiscuits.Valk.models.Employe;
 import com.GestionDesBiscuits.Valk.service.EmployeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -19,6 +20,7 @@ public class EmployeController {
         return employeService.add(employe);
     }
 
+    @PreAuthorize("hasAuthority('SCOPE_USER')")
     @GetMapping(path = "/list")
     public List<Employe> listeEmploye(){
         return employeService.afficher();

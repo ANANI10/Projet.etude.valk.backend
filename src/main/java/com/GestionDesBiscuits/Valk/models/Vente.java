@@ -4,7 +4,9 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "vente")
@@ -77,7 +79,6 @@ public class Vente {
     }
 
 
-
     public double calculerRevenuTotal(List<Vente> ventes) {
         double revenuTotal = 0.0;
 
@@ -85,10 +86,13 @@ public class Vente {
                 revenuTotal += vente.calculerRevenu();
         }
         return revenuTotal;
-        }
+    }
 
-
-    @ManyToOne
-    @JoinColumn(name = "produit_id")
-    private Produit produit;
+    @ManyToMany
+    @JoinTable(
+            name = "vente_produit",
+            joinColumns = @JoinColumn(name = "vente_id"),
+            inverseJoinColumns = @JoinColumn(name = "produit_id")
+    )
+    private Set<Produit> produits = new HashSet<>();
 }
